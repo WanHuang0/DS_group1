@@ -20,16 +20,49 @@ Explaining what the code does
 
 ### What is the input to and the output from the neural network
 
+The Neural Network is constructed from 3 type of layers:
+- Input layer — initial data for the neural network.
+- Hidden layers — intermediate layer between input and output layer and place where all the computation is done.
+- Output layer — produce the result for given inputs.
+
 
 ### What is Keras? And how does it relate to Tensorflow?
+Keras is the high-level API of TensorFlow: an approachable, highly-productive interface for solving machine learning problems, with a focus on modern deep learning. 
+It provides essential abstractions and building blocks for developing and shipping machine learning solutions with high iteration velocity.
+
+Keras empowers engineers and researchers to take full advantage of the scalability and cross-platform capabilities of TensorFlow: you can run Keras on large clusters of GPUs, and you can export your Keras models to run in the browser or on a mobile device.
+
+TensorFlow is an end-to-end, open-source machine learning platform. You can think of it as an infrastructure layer for differentiable programming. It combines four key abilities:
+
+- Efficiently executing low-level tensor operations on CPU, GPU, or TPU.
+- Computing the gradient of arbitrary differentiable expressions.
+- Scaling computation to many devices, such as clusters of hundreds of GPUs.
+- Exporting programs ("graphs") to external runtimes such as servers, browsers, mobile and embedded devices.
 
 
 ### How is the data loaded
-
+The data are loaded to Python through Keras.
+```
+(x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()
+```
 
 ### Which dependencies are imported
 
+Following dependencies are imported:
+```
+import numpy as np
+from tensorflow import keras
+from tensorflow.keras import layers
+```
 
 ### What kind of neural network architecture are you dealing with?
+
+We are dealing here with a Convolutional Neural Network (CNN).
+Convolutional Neural Networks is a type of Feed-Forward Neural Networks used in tasks like image analysis, natural language processing, and other complex image classification problems.
+
+A CNN has hidden layers of convolutional layers that form the base of ConvNets. 
+
+
+
 
 
