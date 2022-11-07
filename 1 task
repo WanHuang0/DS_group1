@@ -1,3 +1,0 @@
-The MNIST data-set is used for image processing systems and it contains of handwritten digits. It is a dataset used for machine learning. 
-a) the data base represents the classification (not regression) problem. 
-b) 60,000 training images and 10,000 testing images, the imaages are in 28x28 pixels format.
