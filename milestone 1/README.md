@@ -2,10 +2,10 @@
 ## Task 1 
 Explain the data set
 
-1. The MNIST database is a large database of handwritten digits that is commonly used for training various image processing systems. 
+- The MNIST database is a large database of handwritten digits that is commonly used for training various image processing systems. 
 It solves the classification problems. Specifically, it is used to classify a given image of handwritten digit into one of 10 classes 
 representing integer value from 0 to 9.
-2. MNIST consists of 70,000 handwritten images of digits (60,000 images in the training set and 10,000 in the test set). The images are
+-  MNIST consists of 70,000 handwritten images of digits (60,000 images in the training set and 10,000 in the test set). The images are
 28x28 pixel grayscale. All images are labeled with the respective digit that they represent. There are a total of 10 classes of digits (from 0 to 9).
 
 ## Task 4
@@ -17,7 +17,7 @@ I have tried running the code on PyCHarm 2020.3.3.
 In order to even tried running it, I had to delete the comment and the beggining of the code (which is odd - comments should not be harmful) but I have encountered an issue. 
 I have updated the operating system and the PyCHarm's default interactive shell is now zsh. Even with those changes, my environment still shows me bin... 
 I had to switch the shell from bin to zsh. 
-* Wan's local machine read the code without an issue.
+* Wan's local machine(windows 11) read the code without an issue.
 * Sergei's PyCharm (the same version) is announcing that he has to dowload libraries in order to run the code.
 
 Python version 3.8, packages tensorflow and numpy are required.
@@ -29,9 +29,10 @@ Explaining what the code does
 ### What is the input to and the output from the neural network
 
 The Neural Network is constructed from 3 type of layers:
-- Input layer — initial data for the neural network.
-- Hidden layers — intermediate layer between input and output layer and place where all the computation is done.
-- Output layer — produce the result for given inputs.
+- Input — initial data for the neural network.The input is a 28 by 28 pixels gray image. Specifically, 
+  a 28 by 28 matrix of values in the interval [0,1].
+	
+- Output — classified digits from 0 to 9.
 
 
 ### What is Keras? And how does it relate to Tensorflow?
