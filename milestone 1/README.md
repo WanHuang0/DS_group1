@@ -20,6 +20,9 @@ I had to switch the shell from bin to zsh.
 * Wan's local machine read the code without an issue.
 * Sergei's PyCharm (the same version) is announcing that he has to dowload libraries in order to run the code.
 
+Python version 3.8, packages tensorflow and numpy are required.
+
+
 ## Task 5
 Explaining what the code does
 
