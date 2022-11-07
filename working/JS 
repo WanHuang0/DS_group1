@@ -1,0 +1,11 @@
+TASK 1 
+
+The MNIST data-set is used for image processing systems and it contains of handwritten digits. It is a dataset used for machine learning. 
+a) the data base represents the classification (not regression) problem. 
+b) 60,000 training images and 10,000 testing images, the imaages are in 28x28 pixels format.
+
+TASK 4 
+
+I have tried running the code on PyCHarm 2020.3.3. In order to even tried running it, I had to delete the comment and the beggining of the code (which is odd - comments should not be harmful) but I have encountered an issue. I have updated the operating system and the PyCHarm's default interactive shell is now zsh. Even with those changes, my environment still shows me bin... I had to switch the shell from bin to z
+sh. Wan's local machine read the code without an issue and Siergiey's PyCharm (the same version) is announcing that he has to dowload libraries in order to run the code.
+
