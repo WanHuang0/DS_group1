@@ -12,6 +12,7 @@ representing integer value from 0 to 9.
 Explaining how to run the code
 
 _Written by Julia_
+
 I have tried running the code on PyCHarm 2020.3.3. 
 In order to even tried running it, I had to delete the comment and the beggining of the code (which is odd - comments should not be harmful) but I have encountered an issue. 
 I have updated the operating system and the PyCHarm's default interactive shell is now zsh. Even with those changes, my environment still shows me bin... 
