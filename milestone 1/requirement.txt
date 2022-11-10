@@ -1,0 +1,8 @@
+tensorflow==2.3.0
+tensorflow-base==2.3.0
+tensorflow-estimator==2.6.0 
+keras-applications==1.0.8
+keras-preprocessing==1.1.2
+numpy==1.20.3
+numpy-base==1.20.3
+numpydoc==1.1.0

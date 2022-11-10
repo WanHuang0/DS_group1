@@ -1,6 +1,6 @@
 # Milestone 1
 ## Task 1 
-Explain the data set
+### Explain the data set
 
 - The MNIST database is a large database of handwritten digits that is commonly used for training various image processing systems. 
 It solves the classification problems. Specifically, it is used to classify a given image of handwritten digit into one of 10 classes 
@@ -9,7 +9,7 @@ representing integer value from 0 to 9.
 28x28 pixel grayscale. All images are labeled with the respective digit that they represent. There are a total of 10 classes of digits (from 0 to 9).
 
 ## Task 4
-Explaining how to run the code
+### Explaining how to run the code
 
 _Written by Julia_
 
@@ -20,12 +20,27 @@ I had to switch the shell from bin to zsh.
 * Wan's local machine(windows 11) read the code without an issue.
 * Sergei's PyCharm (the same version) is announcing that he has to dowload libraries in order to run the code.
 
-Python version 3.8, packages tensorflow and numpy are required.
+Open Anaconda Prompt, 
+enter `conda list Spyder$` to find the spyder version,
+enter `python -V` to find the python version,
+enter `conda list` to find packages version
+```
+Dependencies and versions
+spyder 5.1.5
+Python version 3.8.11
 
+Packages 
+- tensorflow  2.3.0
+- tensorflow-base  2.3.0
+- tensorflow-estimator 2.6.0 
+- keras-applications 1.0.8
+- keras-preprocessing 1.1.2
+- numpy 1.20.3
+- numpy-base 1.20.3
+- numpydoc 1.1.0
+```
 
 ## Task 5
-Explaining what the code does
-
 ### What is the input to and the output from the neural network
 
 The Neural Network is constructed from 3 type of layers:
