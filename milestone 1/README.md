@@ -1,6 +1,6 @@
 # Milestone 1
 ## Task 1 
-Explain the data set
+### Explain the data set
 
 - The MNIST database is a large database of handwritten digits that is commonly used for training various image processing systems. 
 It solves the classification problems. Specifically, it is used to classify a given image of handwritten digit into one of 10 classes 
@@ -9,7 +9,7 @@ representing integer value from 0 to 9.
 28x28 pixel grayscale. All images are labeled with the respective digit that they represent. There are a total of 10 classes of digits (from 0 to 9).
 
 ## Task 4
-Explaining how to run the code
+### Explaining how to run the code
 
 _Written by Julia_
 
@@ -41,8 +41,6 @@ Packages
 ```
 
 ## Task 5
-Explaining what the code does
-
 ### What is the input to and the output from the neural network
 
 The Neural Network is constructed from 3 type of layers:
