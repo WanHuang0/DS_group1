@@ -20,8 +20,25 @@ I had to switch the shell from bin to zsh.
 * Wan's local machine(windows 11) read the code without an issue.
 * Sergei's PyCharm (the same version) is announcing that he has to dowload libraries in order to run the code.
 
-Python version 3.8, packages tensorflow and numpy are required.
+Open Anaconda Prompt, 
+enter `conda list Spyder$` to find the spyder version,
+enter `python -V` to find the python version,
+enter `conda list` to find packages version
+```
+Dependencies and versions
+spyder 5.1.5
+Python version 3.8.11
 
+Packages 
+- tensorflow  2.3.0
+- tensorflow-base  2.3.0
+- tensorflow-estimator 2.6.0 
+- keras-applications 1.0.8
+- keras-preprocessing 1.1.2
+- numpy 1.20.3
+- numpy-base 1.20.3
+- numpydoc 1.1.0
+```
 
 ## Task 5
 Explaining what the code does
