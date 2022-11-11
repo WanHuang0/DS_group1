@@ -24,12 +24,14 @@ Open Anaconda Prompt,
 enter `conda list Spyder$` to find the spyder version,
 enter `python -V` to find the python version,
 enter `conda list` to find packages version
-```
+
 Dependencies and versions
+```
 spyder 5.1.5
 Python version 3.8.11
-
-Packages 
+```
+Packages
+``` 
 - tensorflow  2.3.0
 - tensorflow-base  2.3.0
 - tensorflow-estimator 2.6.0 
