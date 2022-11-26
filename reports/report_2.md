@@ -19,3 +19,52 @@ A good `hash function` should be complex enough such that it does not produce th
 Scripts will often contain code written outside the scope of any classes or functions. 
 - A `Module` is a Python file that is intended to be imported into scripts and other modules. It often defines members like classes, functions, and variables intended to be used in other files that import it.
 - A `Package` is a collection of related modules that work together to provide certain functionality. These modules are contained within a folder and can be imported just like any other modules. This folder will often contain a special __init__ file that tells Python it’s a package, potentially containing more modules nested within subfolders.
+
+
+
+
+
+
+
+## Task 5
+How to create a `pip "requirements file"` for the code base and get it work within a virtualenv.
+
+Create a virutal environment (named `venv`) for Python with a separate interpreter:
+```
+python3 -m venv venv
+```
+
+To activate virtual environment, use the command `source`:
+```
+source venv/bin/activate
+```
+
+Having installed all the necessery packages using packet manager pip, 
+we use command 
+``` 
+pip freeze 
+```
+to view currently installed packages.
+
+To add packages use
+```
+pip install 
+```
+
+To create requirements file use
+```
+pip freeze > requirements.txt
+```
+
+We have created a `requirements.txt` file with requirements for the code.
+
+To run the code on the new machine we have to pass over the python code
+and the requirements file.
+
+The virtual einvironment with dependencies can be set up by executing following commands:
+```
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
