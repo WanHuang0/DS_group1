@@ -90,7 +90,7 @@ The virtual einvironment with dependencies can be set up by executing following 
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-
+```
 
 ## Task 6 Dockerize code
 Steps:
@@ -100,3 +100,6 @@ Steps:
 5. Use command `docker build . -t python3.9 -f build/Dockerfile` to create a new image named python3.9
 6. Inspect docker images via command `docker images`
 7. Use `docker run -v data:/var/lib/docker/volumes/  python3.9` to start a container with named volume  
+
+## Optional project riddle
+decode: https://www.docker.com/blog/wp-content/uploads/2019/10/2018-Halloween-2.jpg?ssl=1
