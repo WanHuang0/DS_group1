@@ -1,34 +1,4 @@
-Task 3
-
- A docker build context is the set of files located in the specified PATH or URL. The context and dockerfile are used to build docker images from.
-
-Task 4
-
-The Python Package Index can be useful for assessing the quality of a given python package. Factors to include in the evaluation of a given package are:
-1) Number of stars on GitHub
-2) License of the project
-3) is the use compliant with the licence?
-4) Does the package has its own GitHub repository or homepage?
-5) The quality of the README.md file
-6) Popularity on Stack Overflow
-7) The date of the last commit
-8) Do the bugtracker exist?
-
-
-Modules for python script:
-
-We  have decided to split the python code into 4 modules:
-1) Data preparation and scaling the image
-2) Building the model
-3) Training the model
-4) Evaluating the trained model
-
-Above split seems to be the only one sufficient for this code 
-as it contains the intuitive division into parts that are
-needed for any project with trained models.
-
 # Milestone 2
-
 ## Task 2
 ### 1. - What is a Hash function
 While transferring a file from one computer to another it is often important to ensure that the copied file is the same as the source. One method one could use is called `hashing`, which is essentially a process that translates information about the file into a code. Two hash values (of the original file and its copy) can be compared to ensure the files are equal.
@@ -37,7 +7,7 @@ While transferring a file from one computer to another it is often important to 
 A file basically contains blocks of data. `Hashing` transforms this data into a far shorter fixed-length value or key which represents the original string. The `hash value` can be considered the distilled summary of everything within that file.
 A hash is usually a hexadecimal string of several characters. Hashing is also a unidirectional process so you can never work backwards to get back the original data.
 
-A good `hash function` would exhibit a property called the avalanche effect, where the resulting hash output would change significantly or entirely even when a single bit or byte of data within a file is changed. A `hash functio`n that does not do this is considered to have poor randomization, which would be easy to break by hackers.
+A good `hash function` would exhibit a property called the avalanche effect, where the resulting hash output would change significantly or entirely even when a single bit or byte of data within a file is changed. A `hash function` that does not do this is considered to have poor randomization, which would be easy to break by hackers.
 A good `hash function` should be complex enough such that it does not produce the same hash value from two different inputs. If it does, this is known as a hash collision. A `hash function` can only be considered good and acceptable if it can offer a very low chance of collision.
 
 ### 2. - What is a Python module, package and script? How do they differ from one another?
@@ -78,6 +48,32 @@ you have no guarantees that external dependencies in another system will play ni
 In comparison with virtualenv, Docker provides control over external dependencies, better reproducibility in different host systems, 
 better control over all the components of an application (not just Python) and their interactions, reuse of common architectures (there are many Docker images online ready for use).
 
+### 5. - What is the Docker build context?
+A docker build context is the set of files located in the specified PATH or URL. The context and dockerfile are used to build docker images from.
+
+### 6. - How can you assess the quality of a python package on PyPI?
+The Python Package Index can be useful for assessing the quality of a given python package. Factors to include in the evaluation of a given package are:
+1) Number of stars on GitHub
+2) License of the project
+3) Is the use compliant with the licence?
+4) Does the package has its own GitHub repository or homepage?
+5) The quality of the README.md file
+6) Popularity on Stack Overflow
+7) The date of the last commit
+8) Do the bugtracker exist?
+
+## Task 4  
+Modules for python script:
+
+We  have decided to split the python code into 4 modules:
+1) Data preparation and scaling the image
+2) Building the model
+3) Training the model
+4) Evaluating the trained model
+
+Above split seems to be the only one sufficient for this code 
+as it contains the intuitive division into parts that are
+needed for any project with trained models.
 
 ## Task 5
 How to create a `pip "requirements file"` for the code base and get it work within a virtualenv.
