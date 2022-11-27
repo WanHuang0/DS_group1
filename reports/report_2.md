@@ -37,8 +37,7 @@ better control over all the components of an application (not just Python) and t
 Steps:
 1. Download and install Docker Desktop on windows 11
 2. Open Docker Desktop, go to the settings and enable integration with defaut WSL distribution Ubuntu-22.04
-3. Open Ubuntu terminal, go to the group project repository
-4. Create a Dockfile, which installs dependencies from `requirements.txt`
-5. Use command `docker build . -t python_cnn` to create a new image named python_cnn
+3. Open Ubuntu terminal, go to the group project repository (root directory)
+5. Use command `docker build . -t python3.9 -f build/Dockerfile` to create a new image named python3.9
 6. Inspect docker images via command `docker images`
-7. Use `docker run python_cnn` to create a container and run the `main.py`
+7. Use `docker run -v data:/var/lib/docker/volumes/  python3.9` to start a container with named volume  
