@@ -1,9 +1,8 @@
-
-Task 4
+Task 3
 
  A docker build context is the set of files located in the specified PATH or URL. The context and dockerfile are used to build docker images from.
 
-Task 5 
+Task 4
 
 The Python Package Index can be useful for assessing the quality of a given python package. Factors to include in the evaluation of a given package are:
 1) Number of stars on GitHub
