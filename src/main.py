@@ -70,6 +70,8 @@ model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accur
 
 model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, validation_split=0.1)
 
+keras.models.save_model(model, "model_cnn.h5", )
+
 """
 ## Evaluate the trained model
 """
@@ -77,3 +79,11 @@ model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, validation_spl
 score = model.evaluate(x_test, y_test, verbose=0)
 print("Test loss:", score[0])
 print("Test accuracy:", score[1])
+
+"""
+## Predict with the trained model
+"""
+
+model = keras.models.load_model("model_cnn.h5")
+
+y_pred = model.predict(x_test)
