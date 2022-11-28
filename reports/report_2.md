@@ -1,14 +1,31 @@
 # Milestone 2
+## Task 1 About .gitignore
+We add .h5 in .gitignore file to ignore the trained model files.
+
+**Strategy to share changes in .gitignore:**  
+We create a `gitignore` document on google drive to share the changes in .gitignore.
+Whoever creates a feature branch and starts to work on the project will add the new
+changes in the his/her feature branch. When she/he finishes the work and merges the feature branch to the main branch, 
+then commit on .gitignore will be merged together. The advantage is that there is no need to create a separate pull request for minor changes in .gitignore.
+Even if we work on separate feature branches simultaneously, it will not cause conflicts. 
+
 ## Task 2
-### 1. - What is a Hash function
-While transferring a file from one computer to another it is often important to ensure that the copied file is the same as the source. One method one could use is called `hashing`, which is essentially a process that translates information about the file into a code. Two hash values (of the original file and its copy) can be compared to ensure the files are equal.
+### 1. - What is a Hash function? What are some of the use cases?
+A hash function is any algorithm that maps data of a variable length to data of a fixed length. The value returned by a hash function called hash digest, hash value, hash code, hash sum, checksum, or simply "hash". A hash is usually a hexadecimal string of several characters. 
 
-`Hash function` is an algorithm that calculates a fixed-size bit string value from a file.
-A file basically contains blocks of data. `Hashing` transforms this data into a far shorter fixed-length value or key which represents the original string. The `hash value` can be considered the distilled summary of everything within that file.
-A hash is usually a hexadecimal string of several characters. Hashing is also a unidirectional process so you can never work backwards to get back the original data.
+**Use cases**
+One practical use is a data structure called a "hash table," where are data and its hash digest stored associatively. Searching for a string of a variable length in a list is slow, but the hashed value used to store a reference to the original data retrieved in uninterrupted time (barring collisions) — fixed-length hash digest is the perfect solution for building indexes in databases. Hash functions used to accelerate table lookup or data comparison tasks such as finding items in a database, detecting duplicated or similar records in a large file, finding similar stretches in DNA sequences, and other data-driven tasks.
 
-A good `hash function` would exhibit a property called the avalanche effect, where the resulting hash output would change significantly or entirely even when a single bit or byte of data within a file is changed. A `hash function` that does not do this is considered to have poor randomization, which would be easy to break by hackers.
-A good `hash function` should be complex enough such that it does not produce the same hash value from two different inputs. If it does, this is known as a hash collision. A `hash function` can only be considered good and acceptable if it can offer a very low chance of collision.
+Another use is in cryptography, the science of encoding, and safeguarding data. It is easy to generate hash values from input data and easy to verify that the data matches the hash, but hard to 'fake' a hash value to hide malicious data. For example, while transferring a file from one computer to another, it is often important to ensure that the copied file is the same as the source. We can use hash to translate information about the file into a code. Two hash values (of the original file and its copy) then can be compared to ensure the files are equal.  
+
+**Properties**
+A hash function should be deterministic: when it is invoked twice on pieces of data that should be considered equal (e.g., two strings containing the same characters), the function should produce the same value. This policy is crucial to the correctness of virtually all algorithms based on hashing. In the case of a hash table, the lookup operation should look at the slot where the insertion algorithm stored the data that sought, so it must generate the same hash value as output.
+
+A good `hash function` would exhibit a property called the avalanche effect, where the resulting hash output would change significantly or entirely even when a single bit or byte of data within a file is changed. A `hash function` that does not do this is considered to have poor randomization, which would be easy to break by hackers.  
+
+It also should be complex enough such that it does not produce the same hash value from two different inputs. If it does, this is known as a hash collision. A `hash function` can only be considered good and acceptable if it can offer a very low chance of collision.
+
+Hash functions are typically not invertible, meaning that it is not possible to reconstruct the input datum x from its hash value h(x) alone.
 
 ### 2. - What is a Python module, package and script? How do they differ from one another?
 - A `Script` is a runnable Python programs that do something when executed.
@@ -17,12 +34,12 @@ Scripts will often contain code written outside the scope of any classes or func
 - A `Package` is a collection of related modules that work together to provide certain functionality. These modules are contained within a folder and can be imported just like any other modules. This folder will often contain a special __init__ file that tells Python it’s a package, potentially containing more modules nested within subfolders.
 
 ### 3. - How would you explain a Docker container and volume to a child?
-Docker is a way to package application with all the necessay dependencies and configuration.
+Docker is a way to package application with all the necessary dependencies and configuration.
 It is a portable artifact, easily shared and moved around. 
 Docker volumes are file systems mounted on Docker containers to preserve data generated by the running container. 
 
 To put it another way, imagine I build a house with all furnitures. 
-One day I decide to travel around the world. I use a magical camera to take a photo of the house brfore I leave and put it in my backpack. 
+One day I decide to travel around the world. I use a magical camera to take a photo of the house before I leave and put it in my backpack. 
 Whenever I arrive at a new place, I just use this magical photo make a copy of house which I can directly move in.
 I collect some materials along the journey and make handicrafts with the tools stored in the house. There is a problem with the house. Every time when I walk out of the house, 
 the handicrafts will disappear. So I have to pack these stuff into my backpack and carry them with me. 
@@ -41,7 +58,7 @@ Normal use-cases include shipping and running applications on production.
 
 The pros of using virtualenv over Docker include its ease of use (clean and simple interface), fast creation/activation of environments, 
 lightweight environments and better developer experience for simple projects (for example IDE support).
-In addition, Docker is a much more complex technology with limited support on Windows and MacOS.
+In addition, Docker is a much more complex technology with limited support on Windows and Mac OS.
 
 The con of using virtualenv over Docker is that it’s support is limited to Python. By only using virtualenv, 
 you have no guarantees that external dependencies in another system will play nicely with your code.
@@ -49,7 +66,9 @@ In comparison with virtualenv, Docker provides control over external dependencie
 better control over all the components of an application (not just Python) and their interactions, reuse of common architectures (there are many Docker images online ready for use).
 
 ### 5. - What is the Docker build context?
-A docker build context is the set of files located in the specified PATH or URL. The context and dockerfile are used to build docker images from.
+A Docker build context is the set of files and directories that will be available to the Docker engine when you run `docker build` to build an image. 
+You can omit items from the build context by creating a .dockerignore file. 
+When you run a container from this image, the container includes all the information within the build context.
 
 ### 6. - How can you assess the quality of a python package on PyPI?
 The Python Package Index can be useful for assessing the quality of a given python package. Factors to include in the evaluation of a given package are:
@@ -61,6 +80,19 @@ The Python Package Index can be useful for assessing the quality of a given pyth
 6) Popularity on Stack Overflow
 7) The date of the last commit
 8) Do the bugtracker exist?
+9) The number of contributors
+10) The release date
+
+## Task 3
+We add two statements to save a fitted model and load a model,
+```
+keras.models.save_model(model, "model_cnn.h5")
+model = keras.models.load_model("model_cnn.h5")
+```
+make prediction
+```
+y_pred = model.predict(x_test)
+```
 
 ## Task 4  
 Modules for python script:
@@ -76,51 +108,53 @@ as it contains the intuitive division into parts that are
 needed for any project with trained models.
 
 ## Task 5
-How to create a `pip "requirements file"` for the code base and get it work within a virtualenv.
+### How to create a pip 'requirements file' for the code base and get it work within a virtualenv.
 
-Create a virutal environment (named `venv`) for Python with a separate interpreter:
+step 1: install pip in python3 on Ubuntu
 ```
-python3 -m venv venv
+sudo apt install python3-pip
 ```
+step 2: install python3-venv package
+````
+sudo apt install python3.10-venv
+````
+step 3: create an environment named project_env
+````
+python3 -m venv project_env
+````
+If we type `ls`, we can see there is a folder named project_env
 
-To activate virtual environment, use the command `source`:
-```
-source venv/bin/activate
-```
-
-Having installed all the necessery packages using packet manager pip, 
-we use command 
-``` 
-pip freeze 
-```
-to view currently installed packages.
-
-To add packages use
-```
-pip install 
-```
-
-To create requirements file use
-```
-pip freeze > requirements.txt
-```
-
-We have created a `requirements.txt` file with requirements for the code.
-
-To run the code on the new machine we have to pass over the python code
-and the requirements file.
-
-The virtual einvironment with dependencies can be set up by executing following commands:
-```
-python3 -m venv venv
-source venv/bin/activate
+step 4: activate virtual environment
+````
+source project_env/bin/activate
+````
+step 5: create requirements.txt to include all the dependencies 
+````
+touch requirements.txt
+vi requirements.txt
+````
+step 6: install the packages use
+````
 pip install -r requirements.txt
-```
+````
+
+step 7: check the packages installed in this environment
+````
+pip list
+````
+note: we can generate a requirements.txt to include all the packages and relevant versions in this environment by using 
+````
+pip freeze > requirements.txt
+````
+step 8: exit the environment
+````
+deactivate
+````
 
 ## Task 6 Dockerize code
 Steps:
 1. Download and install Docker Desktop on windows 11
-2. Open Docker Desktop, go to the settings and enable integration with defaut WSL distribution Ubuntu-22.04
+2. Open Docker Desktop, go to the settings and enable integration with default WSL distribution Ubuntu-22.04
 3. Open Ubuntu terminal, go to the group project repository (root directory)
 5. Use command `docker build . -t python3.9 -f build/Dockerfile` to create a new image named python3.9
 6. Inspect docker images via command `docker images`
@@ -129,3 +163,8 @@ Steps:
 ## Optional project riddle
 decode: https://www.docker.com/blog/wp-content/uploads/2019/10/2018-Halloween-2.jpg?ssl=1
 
+## Hash digest of python packages
+|Package|Version|Hash Digest|
+|:------:|:---------:|------:|
+|Tensorflow|2.10.0|e129114dc529e63af9c419b5917b3407d0d26a4c8b73e114f601a175a7eb0477|
+|Numpy|1.23.5|f9a909a8bae284d46bbfdefbdd4a262ba19d3bc9921b1e76126b1d21c3c34135|
