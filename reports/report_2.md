@@ -13,12 +13,14 @@ Even if we work on separate feature branches simultaneously, it will not cause c
 ### 1. - What is a Hash function? What are some of the use cases?
 A hash function is any algorithm that maps data of a variable length to data of a fixed length. The value returned by a hash function called hash digest, hash value, hash code, hash sum, checksum, or simply "hash". A hash is usually a hexadecimal string of several characters. 
 
-**Use cases**
+**Use cases**    
+
 One practical use is a data structure called a "hash table," where are data and its hash digest stored associatively. Searching for a string of a variable length in a list is slow, but the hashed value used to store a reference to the original data retrieved in uninterrupted time (barring collisions) — fixed-length hash digest is the perfect solution for building indexes in databases. Hash functions used to accelerate table lookup or data comparison tasks such as finding items in a database, detecting duplicated or similar records in a large file, finding similar stretches in DNA sequences, and other data-driven tasks.
 
 Another use is in cryptography, the science of encoding, and safeguarding data. It is easy to generate hash values from input data and easy to verify that the data matches the hash, but hard to 'fake' a hash value to hide malicious data. For example, while transferring a file from one computer to another, it is often important to ensure that the copied file is the same as the source. We can use hash to translate information about the file into a code. Two hash values (of the original file and its copy) then can be compared to ensure the files are equal.  
 
 **Properties**
+
 A hash function should be deterministic: when it is invoked twice on pieces of data that should be considered equal (e.g., two strings containing the same characters), the function should produce the same value. This policy is crucial to the correctness of virtually all algorithms based on hashing. In the case of a hash table, the lookup operation should look at the slot where the insertion algorithm stored the data that sought, so it must generate the same hash value as output.
 
 A good `hash function` would exhibit a property called the avalanche effect, where the resulting hash output would change significantly or entirely even when a single bit or byte of data within a file is changed. A `hash function` that does not do this is considered to have poor randomization, which would be easy to break by hackers.  
@@ -86,26 +88,28 @@ The Python Package Index can be useful for assessing the quality of a given pyth
 ## Task 3
 We add two statements to save a fitted model and load a model,
 ```
-keras.models.save_model(model, "model_cnn.h5")
-model = keras.models.load_model("model_cnn.h5")
+keras.models.save_model(model, "model_nn.h5")
+model = keras.models.load_model("model_nn.h5")
 ```
-make prediction
+make prediction with fitted model
 ```
 y_pred = model.predict(x_test)
 ```
 
 ## Task 4  
-Modules for python script:
+### Modules for python script.
 
-We  have decided to split the python code into 4 modules:
-1) Data preparation and scaling the image
-2) Building the model
-3) Training the model
-4) Evaluating the trained model
+We decided to split the python code into 4 modules:
+1) data_process.py :loading and processing data
+2) neuralnet_architecture.py :building the architecture of neural network model
+3) train.py :training the model with processed training data
+4) evaluate.py :evaluating the trained model
 
-Above split seems to be the only one sufficient for this code 
-as it contains the intuitive division into parts that are
-needed for any project with trained models.
+Reasons:
+- It is natural to build every step of the typical machine learning pipeline into modules. Each module serves a unique purpose, which is easy for people to understand and debug.
+- Less communication overhead. For example, in a big project, people who are reponsible for building the model do not need to know data preparation details.
+- it is scalable and less error-prone as we proceed with the project.
+- It is also easier to reuse the modules for other machine learning problems.
 
 ## Task 5
 ### How to create a pip 'requirements file' for the code base and get it work within a virtualenv.
@@ -166,5 +170,5 @@ decode: https://www.docker.com/blog/wp-content/uploads/2019/10/2018-Halloween-2.
 ## Hash digest of python packages
 |Package|Version|Hash Digest|
 |:------:|:---------:|------:|
-|Tensorflow|2.10.0|e129114dc529e63af9c419b5917b3407d0d26a4c8b73e114f601a175a7eb0477|
+|Tensorflow|2.11.0|d973458241c8771bf95d4ba68ad5d67b094f72dd181c2d562ffab538c1b0dad7|
 |Numpy|1.23.5|f9a909a8bae284d46bbfdefbdd4a262ba19d3bc9921b1e76126b1d21c3c34135|
