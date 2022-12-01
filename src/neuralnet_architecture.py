@@ -39,12 +39,8 @@ class Model:
                 layers.Dense(self.classes, activation="softmax"),
             ]
         )
+        # Show the structure of neural network model
+        self.summary = self.model.summary
         return self.model
 
 
-if __name__ == '__main__':
-    # Initialize Model object and build the architecture
-    model = Model()
-    built = model.build()
-    # Show the structure of neural network model
-    built.summary()
