@@ -2,12 +2,12 @@ FROM python:3.9
 
 WORKDIR ./
 
-COPY ./dep/requirements.txt ./
+COPY ./requirements.txt ./
 
 RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ["python", "./src/main.py"]
+CMD ["python", "./main.py"]
 
 
