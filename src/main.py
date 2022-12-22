@@ -38,7 +38,7 @@ train_nn(x_train, y_train)
 """
 ## Predict with the trained model
 """
-trained_model = keras.models.load_model("model_nn.h5")
+trained_model = keras.models.load_model("/model/model_nn.h5")
 y_pred = trained_model.predict(x_test)
 
 
