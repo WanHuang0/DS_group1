@@ -17,9 +17,7 @@ cur = None
 sample_x = x_train[:200, :28, :28]
 sample_y = y_train[:200]
 
-
-# create database mnist
-
+# create database 
 def CreateDB(dbname):
     try:
         # Establishing the connection 
