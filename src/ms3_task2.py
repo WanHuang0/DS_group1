@@ -9,37 +9,51 @@ dbname = 'ms3_jokes'
 conn = None
 cur = None
 
-try:
-    # Establishing the connection
-    conn = connect(
-        host = hostname,
-        user = username,
-        password = pwd, 
-        port = port_id )
-    
-    # Set autocommit
-    auto_commit = extensions.ISOLATION_LEVEL_AUTOCOMMIT
-    conn.set_isolation_level(auto_commit)
-    
-    # Creating a cursor object to perform database operations
-    cur = conn.cursor()
-    
-    # Check whether we are able to perform database operations
-    print("Cursor found",cur)
-  
-    # Create a database named 'ms3_jokes'
-    create_db = '''CREATE DATABASE ms3_jokes'''
-    cur.execute(create_db)
-    
-except Exception as error:
-    print(error)
-    
-finally:
-    if cur is not None:
-        cur.close()
-    if conn is not None:
-        conn.close()
-         
+# Create database
+def CreateDB(dbname):
+    try:
+        # Establishing the connection 
+        conn = connect(
+            host = hostname,
+            user = username,
+            password = pwd, 
+            port = port_id )
+        
+        # Set autocommit
+        auto_commit = extensions.ISOLATION_LEVEL_AUTOCOMMIT
+        conn.set_isolation_level(auto_commit)
+        
+        # Creating a cursor object to perform database operations
+        cur = conn.cursor()
+
+        # Check whether we are able to perform database operations
+        print("Cursor found",cur)
+        
+        # Create a new database if it does not exist
+        # query = '''SELECT * FROM pg_catalog.pg_database WHERE datname="mnist"'''
+        cur.execute(f"SELECT * FROM pg_catalog.pg_database WHERE datname='{dbname}'")
+        exists = cur.fetchall()
+        if exists:      
+            print(f"Database {dbname} already exists")
+        else:
+            # Create a database
+            create_db = '''CREATE DATABASE ''' +  dbname
+            cur.execute(create_db)
+            print(f"Successfully create a new database {dbname}")
+        
+    except Exception as error:
+        print(error)
+        
+    finally:
+        # Close cursor and connection
+        if cur is not None:
+            cur.close()
+        if conn is not None:
+            conn.close()
+            
+# Create database 
+CreateDB(dbname)
+
 try:
     # Establishing the connection
     conn = connect(
