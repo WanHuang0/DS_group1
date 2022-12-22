@@ -24,7 +24,7 @@ A localhost is that standard hostname given to the machine itself. It is used to
   management system), so it is an SQL, but PostgreSQL has added support for JSON (which has been the most popular format for semi-structured data stored in NO-SQL systems)
 
 ### 2. - Create database ms3_jokes
-We create `db_jokes.py` to create and communicate with database `ms3_jokes`.
+We create `ms3_task2.py` to create and communicate with database `ms3_jokes`.
 
 **Step 1**. Create and start containers in detached mode
 ```
@@ -36,9 +36,9 @@ docker run -it --network=src_app-tier src_app bash
 ```
 to create a new container running python script which connects to network `src_app-tier`.   
 
-**Step 3**. Then we are in the iteractive mode of this python container. We will run the script `db_jokes.py` by typing
+**Step 3**. Then we are in the iteractive mode of this python container. We will run the script `ms3_task2.py` by typing
 ```
-python3 db_jokes.py
+python3 ms3_task2.py
 ```
 **Step 4**. If we go to browser, input
 ```
@@ -57,17 +57,16 @@ First, make connection to postgreSQL server and create database `ms3_jokes`, and
 Next, make connection again but to database `ms3_jokes` directly, and create table `jokes` and insert data.
 
 ## Task 3
+We create `ms3_task3.py` for this this task.
 ### 1. - How do you need to represent/transform image data to save it to a relational database?
 We transform the image data to binary string with function `dumps()` from `pickle` package and then save it in postgreSQL.
 ```
- insert_script = 'INSERT INTO imagesBinary(id, digit, label, image) VALUES (%s, %s, %s, %s) '
+   insert_script = 'INSERT INTO imagesBinary(id, label, image) VALUES (%s, %s, %s) '
     for i in range(len(sample_y)):
         pickle_string_x = pickle.dumps(sample_x[i,:28,:28])  
-        pickle_string_y = pickle.dumps(sample_y[i])  
-        digit = sample_y[i].tolist()
-        insert_values = (i, digit, pickle_string_y, pickle_string_x)
+        label = sample_y[i].tolist()
+        insert_values = (i, label, pickle_string_x)
         cur.execute(insert_script, insert_values)
-    print("Successfully insert image data into table imagesBinary")
 ```
 ### 2. - How is your data structured?
 MNIST dataset contains 60k images in training set and 10k images in testing set. 
@@ -81,24 +80,18 @@ Each individual image is of dimension [28, 28], and each individual lable is of 
 ### 3. - Explain how you would define your relational database tables in terms of their attributes to save your data. What kind of data types could you use.
 We define our table below
 ```
-CREATE TABLE imagesBinary  ( id int PRIMARY KEY,
-                             labelBinary bytea,
-                             image bytea)
+CREATE TABLE imagesBinary (id int PRIMARY KEY,
+                           label int,
+                           image bytea)
 ```
 
 ### 4. - What additional relational database table attributes might make sense to easily query your data (f.e. find all pictures of giraffes)?
 
-We can add attribute `digit` which represents the handwritten digit.
-```
-CREATE TABLE imagesBinary  ( id int PRIMARY KEY, 
-                             digit int,
-                             label bytea,
-                             image bytea)
-```
+We can add attribute `label` which represents the handwritten digit.   
 If we need to retrieve first 3 images of handwritten digit 2, we can query the database by
 ```
 SELECT image FROM imagesBinary
-WHERE digit = 3
+WHERE label = 3
 LIMIT 3
 ```
  
@@ -107,16 +100,19 @@ After retrieving the image data from postgreSQL, the binary data of image and la
 we are able to open image with function `Image` from `Pillow` package. We also print the data use nested for-loop below.
  
 ```
-    cur.execute(""" SELECT * FROM  imagesBinary WHERE digit=2 LIMIT 3""")
+  cur.execute(""" SELECT * FROM  imagesBinary WHERE label=2 LIMIT 3""")
     print("Retrieve images from postgreSQL")
 
     for record in cur.fetchall():            
-        retrieved_label = pickle.loads(record[2])
-        retrieved_image = pickle.loads(record[3])
+        retrieved_image = pickle.loads(record[2])
+        retrieved_label = record[1]
         print(f"Image ID: {record[0]}, Label: {retrieved_label}")
-	  pil_image = Image.fromarray(retrieved_image)
+        
+        # Show image
+        pil_image = Image.fromarray(retrieved_image)
         pil_image.show()
-
+        
+        # Alternative way to show image data
         for i in range(28):
           for j in range(28):
               print("%3d" % retrieved_image[i,j], end="")
@@ -125,9 +121,8 @@ we are able to open image with function `Image` from `Pillow` package. We also p
 
 
 ## Task 4
-### 1. - Create a docker-compose.yml file
-
-### 2. - Explain to us how you chose to structure your database (essentially your database schema). What tables do you have, what attributes do they have. 
+We create `ms3_task4.py` for this task.
+###  - Explain to us how you chose to structure your database (essentially your database schema). What tables do you have, what attributes do they have. 
 
 
 
