@@ -121,10 +121,9 @@ we are able to open image with function `Image` from `Pillow` package. We also p
 
 
 ## Task 4
-We create `ms3_task4.py` for this task.
 ###  - Explain to us how you chose to structure your database (essentially your database schema). What tables do you have, what attributes do they have. 
-
-
+We create `ms3_task4.py` for this task.    
+ER diagram: https://drive.google.com/file/d/1FNvFEYt8WckT5l7oe4timqkjkpzjr-2J/view?usp=share_link
 
 ## Hash digest of python packages
 |Package|Version|Hash Digest|
