@@ -78,30 +78,28 @@ try:
     # Create table
     create_tb = '''CREATE TABLE imagesBinary (
                         id int PRIMARY KEY,
-                        digit int,
-                        label bytea,
+                        label int,
                         image bytea)'''
     
     cur.execute(create_tb)
     print("Successfully create table imagesBinary")
     
     # Transform ndarray to binary data and insert records to postgreSQL
-    insert_script = 'INSERT INTO imagesBinary(id, digit, label, image) VALUES (%s, %s, %s, %s) '
+    insert_script = 'INSERT INTO imagesBinary(id, label, image) VALUES (%s, %s, %s) '
     for i in range(len(sample_y)):
         pickle_string_x = pickle.dumps(sample_x[i,:28,:28])  
-        pickle_string_y = pickle.dumps(sample_y[i])  
-        digit = sample_y[i].tolist()
-        insert_values = (i, digit, pickle_string_y, pickle_string_x)
+        label = sample_y[i].tolist()
+        insert_values = (i, label, pickle_string_x)
         cur.execute(insert_script, insert_values)
     print("Successfully insert image data into table imagesBinary")
     
     # Fetch data from postgreSQL
-    cur.execute(""" SELECT * FROM  imagesBinary WHERE digit=2 LIMIT 3""")
+    cur.execute(""" SELECT * FROM  imagesBinary WHERE label=2 LIMIT 3""")
     print("Retrieve images from postgreSQL")
 
     for record in cur.fetchall():            
-        retrieved_label = pickle.loads(record[2])
-        retrieved_image = pickle.loads(record[3])
+        retrieved_image = pickle.loads(record[2])
+        retrieved_label = record[1]
         print(f"Image ID: {record[0]}, Label: {retrieved_label}")
         
         # Show image

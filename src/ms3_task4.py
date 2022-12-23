@@ -87,42 +87,41 @@ try:
     # Create table input_data
     create_tb1 = '''CREATE TABLE IF NOT EXISTS input_data (
                         id int PRIMARY KEY,
-                        digit int,
-                        label bytea,
+                        label int,
                         image bytea)'''
     
     cur.execute(create_tb1)
     
     # Transform ndarray to binary data and insert data to table input_data
-    insert_script1 = 'INSERT INTO input_data(id, digit, label, image) VALUES (%s, %s, %s, %s) '
+    insert_script1 = 'INSERT INTO input_data(id, label, image) VALUES (%s, %s, %s) '
     for i in range(len(sample_y)):
         pickle_string_x = pickle.dumps(sample_x[i,:28,:28])  
-        pickle_string_y = pickle.dumps(sample_y[i])  
-        digit = sample_y[i].tolist()
-        insert_values1 = (i, digit, pickle_string_y, pickle_string_x)
+        label = sample_y[i].tolist()
+        insert_values1 = (i, label, pickle_string_x)
         cur.execute(insert_script1, insert_values1)
     print("Successfully inserted image data into table input_data")
 
     # Create table predictions
     create_tb2 = '''CREATE TABLE IF NOT EXISTS predictions (
-                        id int REFERENCES input_data(id),
+                        pred_id int REFERENCES input_data(id),
                         prediction bytea)'''
     
     cur.execute(create_tb2)
     
     # Fetch input data from postgreSQL
-    cur.execute(''' SELECT * FROM  input_data WHERE digit = 2''')
+    cur.execute(''' SELECT * FROM  input_data WHERE label = 2''')
     records = cur.fetchall()
     print("Retrieve images from postgreSQL")
     
     retrieved_image = np.array([[[0] * 28] * 28]*len(records))
     retrieved_id = np.array([0]*len(records))
     for i in range(len(records)):
-        retrieved_image[0] = pickle.loads(records[i][3])
+        retrieved_image[0] = pickle.loads(records[i][2])
         retrieved_id[i] = records[i][0]
     
     # Load trained model
     model_nn = trained_model = keras.models.load_model("/model/model_nn.h5")
+    print("Load the model")
     
     # Process input data
     x_pred = data_process.scale(retrieved_image)
@@ -133,7 +132,7 @@ try:
     print("Successfully made prediction")
     
     # Store prediction results into table predictions
-    insert_script2 = 'INSERT INTO predictions(id, prediction) VALUES (%s, %s)'
+    insert_script2 = 'INSERT INTO predictions(pred_id, prediction) VALUES (%s, %s)'
     
     for i in range(len(y_pred)):
         pickle_string_y2 = pickle.dumps(y_pred[i,:10])         
