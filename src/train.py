@@ -8,7 +8,7 @@ import neuralnet_architecture as nn
 """
 ## Train the model
 """
-def train_nn(x_train, y_train, batch_size = 128, epochs = 15):
+def train_nn(x_train, y_train, batch_size = 128, epochs = 1):
     '''
     Train the model
     
@@ -25,7 +25,7 @@ def train_nn(x_train, y_train, batch_size = 128, epochs = 15):
     
     built_model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
     built_model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, validation_split=0.1)
-    keras.models.save_model(built_model, "model_nn.h5")
+    keras.models.save_model(built_model, "/model/model_nn.h5")
     return built_model
 
 
