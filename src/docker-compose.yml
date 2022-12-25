@@ -15,9 +15,11 @@ services:
   pgadmin:
     image: dpage/pgadmin4
     restart: always
+    env_file:
+      - .env
     environment:
-      PGADMIN_DEFAULT_EMAIL: pgadmin@gmail.com
-      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_DEFAULT_EMAIL: "${PGADMIN_EMAIL}"
+      PGADMIN_DEFAULT_PASSWORD: "${PGADMIN_PASSWORD}"
     ports:
       - "5050:80"
     networks:
@@ -37,4 +39,4 @@ services:
 networks:
     app-tier:
           driver: bridge
-      
+ 
