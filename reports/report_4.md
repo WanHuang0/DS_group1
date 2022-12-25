@@ -1,5 +1,8 @@
 # Milestone 3
 
+## Task 2
+### Choose an appropriate metric for optimizing your ML Model. What is the reasoning behind it?
+Wandb report: https://api.wandb.ai/report/ds_group1/6616vdy6
 
 ## Hash digest of python packages
 |Package|Version|Hash Digest|
