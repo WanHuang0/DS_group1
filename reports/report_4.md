@@ -2,7 +2,13 @@
 
 ## Task 2
 ### Choose an appropriate metric for optimizing your ML Model. What is the reasoning behind it?
-Wandb report: https://api.wandb.ai/report/ds_group1/6616vdy6
+**Wandb report:** https://api.wandb.ai/report/ds_group1/6616vdy6
+
+**Metric:** Accuracy
+
+**Reasons:** Accuracy is the quintessential classification metric. It is pretty easy to understand and suited for binary as well as a multiclass classification problem. Accuracy is the proportion of true results among the total number of cases examined.   
+Accuracy = (TP+TN)/(TP+FP+FN+TN)  
+Accuracy is a valid choice of evaluation for classification problems which are well balanced and not skewed or No class imbalance.
 
 ## Hash digest of python packages
 |Package|Version|Hash Digest|
