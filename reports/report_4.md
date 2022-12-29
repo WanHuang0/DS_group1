@@ -25,12 +25,17 @@ In order to compare and chose the most suitable ML model and experiment we need 
 **Presision** (or Positive Predictive Value) - the fraction of relevant instances among the retrieved instances
 **Recall** (or Sensitivity) - the fraction of relevant instances that were retrieved.
 
+
 The Precision and Recall **Trade-off** shows that if you increase the precision then recall will decrease and if you increase the recall then precision will decrease. We can not simultaneously increase both precision and recall.
 Usually, precision and recall scores are not discussed in isolation. Instead, either values for one measure are compared for a fixed level at the other measure (e.g. precision at a recall level of 0.75) or both are combined into a single weighted metric using specially designed formulae.
+
 ---
+
 **Confusion Matrix** 
 One of the basic classification metrics is the Confusion Matrix. It is a tabular visualization of the truth labels versus the model’s predictions. Each row of the confusion matrix represents instances in a predicted class and each column represents instances in an actual class. Confusion Matrix is not entirely a performance metric but provides a basis on which other metrics can evaluate the results. There are 4 classes of a Confusion Matrix. The True Positive signifies how many positive class samples the created model has predicted correctly. True Negative signifies how many negative class samples the created model predicted correctly. False Positive signifies how many negative class samples the created model predicted incorrectly and vice versa goes for False Negative. 
+
 ---
+
 **AU-ROC Metric** 
 The AUC-ROC is an essential technique to determine and evaluate the performance of a  classification model. Performing this test only increases the value and correctness of a model and in turn, helps improve its accuracy.  Using this method helps us summarize the actual trade-off between the true positive rate and the predictive value for a predictive model using different probability thresholds which is an important aspect of classification problems.
 
