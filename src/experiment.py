@@ -54,10 +54,7 @@ def run_experiment():
     val_loss = history.history["val_loss"]
     val_acc = history.history["val_accuracy"]
     
-    print(f"train loss: {train_loss}, train acc: {train_acc}")
-    print(f"val loss: {val_loss}, val acc: {val_acc}")
     for epoch in range(1, epochs+1, 1):
-        print("current epochs:", epoch)
         wandb.log({
           'epoch': epoch, 
           'batch_size': batch_size,
