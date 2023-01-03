@@ -52,8 +52,21 @@ AUC-ROC is the valued metric used for evaluating the performance in classificati
 
 The AUC-ROC curve of a test can also be used as a criterion to measure the test’s discriminative ability, telling us how good the test is in a given clinical situation. The closer an AUC-ROC curve is to the upper left corner, the more efficient the test being performed will be. To combine the False Positive Rate and the True Positive Rate into a single metric, we can first compute the two former metrics with many different thresholds for the logistic regression, then plot them on a single graph. The resulting curve metric we consider is the area under this curve, which we call AUC-ROC.
 
+## Task 2
+### Choose an appropriate metric for optimizing your ML Model. What is the reasoning behind it?
+**Wandb report:** https://api.wandb.ai/report/ds_group1/6616vdy6
 
+**Metric:** Accuracy
 
+**Reasons:** Accuracy is the quintessential classification metric. It is pretty easy to understand and suited for binary as well as a multiclass classification problem. Accuracy is the proportion of true results among the total number of cases examined.   
+Accuracy = (TP+TN)/(TP+FP+FN+TN)  
+Accuracy is a valid choice of evaluation for classification problems when classes are well balanced and not skewed. 
 
-
-
+## Hash digest of python packages
+|Package|Version|Hash Digest|
+|:------:|:---------:|------:|
+|Tensorflow|2.11.0|d973458241c8771bf95d4ba68ad5d67b094f72dd181c2d562ffab538c1b0dad7|
+|numpy|1.23.5|f9a909a8bae284d46bbfdefbdd4a262ba19d3bc9921b1e76126b1d21c3c34135|
+|psycopg2|2.9.5|920bf418000dd17669d2904472efeab2b20546efd0548139618f8fa305d1d7ad|
+|Pillow|9.3.0|0b07fffc13f474264c336298d1b4ce01d9c5a011415b79d4ee5527bb69ae6f65|
+|wandb|0.13.7|b88fe5e75b01f537838dee3fe43c00e15d9d6dd08671503374858fb2e539fcd4|

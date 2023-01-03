@@ -125,6 +125,38 @@ we are able to open image with function `Image` from `Pillow` package. We also p
 We create `ms3_task4.py` for this task.    
 ER diagram: https://drive.google.com/file/d/1FNvFEYt8WckT5l7oe4timqkjkpzjr-2J/view?usp=share_link
 
+## Optional
+### - What is an SQL Injection Attack and how can you protect yourself?
+SQL injection (SQLi) is a web security vulnerability that allows an attacker to interfere with the queries that an application makes to its database. 
+It generally allows an attacker to view data that they are not normally able to retrieve. This might include data belonging to other users, 
+or any other data that the application itself is able to access. In many cases, an attacker can modify or delete this data, 
+causing persistent changes to the application's content or behavior. In some situations, an attacker can escalate an SQL injection attack to 
+compromise the underlying server or other back-end infrastructure, or perform a denial-of-service attack.
+
+Some common SQL injection examples include:
+
+- Retrieving hidden data, where you can modify an SQL query to return additional results.
+- Subverting application logic, where you can change a query to interfere with the application's logic.
+- UNION attacks, where you can retrieve data from different database tables.
+- Examining the database, where you can extract information about the version and structure of the database.
+- Blind SQL injection, where the results of a query you control are not returned in the application's responses.
+
+Most instances of SQL injection can be prevented by using parameterized queries (also known as prepared statements) instead of string concatenation within the query.
+Parameterized queries can be used for any situation where untrusted input appears as data within the query, 
+including the WHERE clause and values in an INSERT or UPDATE statement. They can't be used to handle untrusted input in other parts of the query, 
+such as table or column names, or the ORDER BY clause. Application functionality that places untrusted data into those parts of the query will need to take a different approach, 
+such as white-listing permitted input values, or using different logic to deliver the required behavior.
+
+For a parameterized query to be effective in preventing SQL injection, the string that is used in the query must always be a hard-coded constant, 
+and must never contain any variable data from any origin. Do not be tempted to decide case-by-case whether an item of data is trusted, 
+and continue using string concatenation within the query for cases that are considered safe. 
+It is all too easy to make mistakes about the possible origin of data, or for changes in other code to violate assumptions about what data is tainted.
+
+## Bonus point: 
+
+(Wan) help solve docker network issue for Linh Ramirez's group on Slack.
+
+
 ## Hash digest of python packages
 |Package|Version|Hash Digest|
 |:------:|:---------:|------:|

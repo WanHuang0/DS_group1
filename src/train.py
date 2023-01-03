@@ -3,12 +3,13 @@
 """
 from tensorflow import keras
 import neuralnet_architecture as nn
+from wandb.keras import WandbCallback
 
 
 """
 ## Train the model
 """
-def train_nn(x_train, y_train, batch_size = 128, epochs = 1):
+def train_nn(x_train, y_train, batch_size = 128, epochs = 1, optimizer = "adam"):
     '''
     Train the model
     
@@ -23,10 +24,11 @@ def train_nn(x_train, y_train, batch_size = 128, epochs = 1):
     model = nn.Model()
     built_model = model.build()
     
-    built_model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
-    built_model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, validation_split=0.1)
+    built_model.compile(loss="categorical_crossentropy", optimizer=optimizer, metrics=["accuracy"])
+    history = built_model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, validation_split=0.1, 
+                              callbacks=[WandbCallback(data_type="image"), keras.callbacks.EarlyStopping(patience=10, restore_best_weights=True)])
     keras.models.save_model(built_model, "/model/model_nn.h5")
-    return built_model
+    return history
 
 
 

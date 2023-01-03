@@ -11,6 +11,11 @@ cur = None
 
 # Create database
 def CreateDB(dbname):
+    '''
+    Create database
+    
+    dbname (string): database name
+    '''
     try:
         # Establishing the connection 
         conn = connect(
