@@ -4,6 +4,8 @@
 from tensorflow import keras
 import data_process as data
 from train import train_nn 
+from evaluate import evaluate
+from predict import predict
 
 """
 ## Prepare the data
@@ -39,14 +41,13 @@ train_nn(x_train, y_train)
 ## Predict with the trained model
 """
 trained_model = keras.models.load_model("/model/model_nn.h5")
-y_pred = trained_model.predict(x_test)
+y_pred = predict(trained_model, x_test)
 
 
 """
 ## Evaluate the trained model
 """
-score = trained_model.evaluate(x_test, y_test, verbose=0)
-print("Test loss:", score[0])
-print("Test accuracy:", score[1])
+score = evaluate(x_test, y_test, verbose=0)
+
 
 
