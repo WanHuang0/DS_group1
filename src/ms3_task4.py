@@ -21,11 +21,6 @@ sample_y = y_train[:200]
 
 # Create database
 def CreateDB(dbname):
-    '''
-    Create database
-    
-    dbname (string): database name
-    '''
     try:
         # Establishing the connection 
         conn = connect(
@@ -98,7 +93,7 @@ try:
     cur.execute(create_tb1)
     
     # Transform ndarray to binary data and insert data to table input_data
-    insert_script1 = 'INSERT INTO input_data(id, label, image) VALUES (%s, %s, %s) '
+    insert_script1 = 'INSERT INTO input_data(id, label, image) VALUES (%s, %s, %s) ON CONFLICT (id) DO NOTHING'
     for i in range(len(sample_y)):
         pickle_string_x = pickle.dumps(sample_x[i,:28,:28])  
         label = sample_y[i].tolist()
