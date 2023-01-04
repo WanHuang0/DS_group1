@@ -6,6 +6,7 @@ import data_process as data
 from train import train_nn 
 from evaluate import evaluate
 from predict import predict
+import wandb
 
 """
 ## Prepare the data
@@ -34,6 +35,9 @@ print(x_test.shape[0], "samples")
 """
 ## Train and save the model
 """
+# Initialize wandb object
+wandb.init(project='DS-project') 
+
 train_nn(x_train, y_train)
 
 
@@ -47,7 +51,8 @@ y_pred = predict(trained_model, x_test)
 """
 ## Evaluate the trained model
 """
-score = evaluate(x_test, y_test, verbose=0)
+score = evaluate(trained_model, x_test, y_test)
 
-
+# Close wandb run 
+wandb.finish()
 
