@@ -58,9 +58,13 @@ The AUC-ROC curve of a test can also be used as a criterion to measure the testâ
 
 **Metric:** Accuracy
 
-**Reasons:** Accuracy is the quintessential classification metric. It is pretty easy to understand and suited for binary as well as a multiclass classification problem. Accuracy is the proportion of true results among the total number of cases examined.   
+**Reasons:** Accuracy is the quintessential classification metric. It is the proportion of true results among the total number of cases examined, i.e.,   
 Accuracy = (TP+TN)/(TP+FP+FN+TN)  
-Accuracy is a valid choice of evaluation for classification problems when classes are well balanced and not skewed. 
+It is pretty easy to understand and suited for binary as well as a multiclass classification problem. 
+Accuracy is a valid choice of evaluation for classification problems when classes are well balanced and not skewed. We inspect the balance of training and test dataset in task3, and we find the classes are uniform distributed.
+
+## Task 3
+refer to ms4_task3.ipynb
 
 ## Hash digest of python packages
 |Package|Version|Hash Digest|
