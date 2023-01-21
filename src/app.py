@@ -3,6 +3,7 @@ from PIL import Image
 import numpy as np
 from keras.models import load_model
 import tensorflow as tf
+import db
 
 app = Flask(__name__, template_folder='templates')
 #class_name = [0,1, 2, 3,4,5,6,7,8,9]
@@ -26,6 +27,10 @@ def upload_image_file():
        # with graph.as_default():
         y_pred = model.predict(im2arr)
         y_pred = np.argmax(y_pred)
+        
+        # save input converted image data and prediction in database
+        db.insert_input(im2arr)
+        db.insert_prediction(y_pred)
         return 'Predicted Number: ' + str(y_pred)
 		
 if __name__ == '__main__':

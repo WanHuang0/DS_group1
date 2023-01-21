@@ -9,15 +9,15 @@ hostname = 'db'
 port_id = '5432' 
 username = 'postgres'
 pwd = 'admin'
-dbname = 'milestone_3'
+dbname = 'mnist'
 conn = None
 cur = None
 
 # Load data
 (x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()
 # Take a sample
-sample_x = x_train[:200, :28, :28]
-sample_y = y_train[:200]
+sample_x = x_train[0, :28, :28]
+sample_y = y_train[0]
 
 # Create database
 def CreateDB(dbname):
@@ -86,61 +86,21 @@ try:
     
     # Create table input_data
     create_tb1 = '''CREATE TABLE IF NOT EXISTS input_data (
-                        id int PRIMARY KEY,
-                        label int,
+                        id SERIAL PRIMARY KEY,
                         image bytea)'''
     
     cur.execute(create_tb1)
-    
-    # Transform ndarray to binary data and insert data to table input_data
-    insert_script1 = 'INSERT INTO input_data(id, label, image) VALUES (%s, %s, %s) ON CONFLICT (id) DO NOTHING'
-    for i in range(len(sample_y)):
-        pickle_string_x = pickle.dumps(sample_x[i,:28,:28])  
-        label = sample_y[i].tolist()
-        insert_values1 = (i, label, pickle_string_x)
-        cur.execute(insert_script1, insert_values1)
-    print("Successfully inserted image data into table input_data")
+    print("Successfully created table input_data")
+
 
     # Create table predictions
     create_tb2 = '''CREATE TABLE IF NOT EXISTS predictions (
-                        pred_id int REFERENCES input_data(id),
-                        prediction bytea)'''
+                        pred_id SERIAL PRIMARY KEY REFERENCES input_data(id),
+                        prediction int)'''
     
     cur.execute(create_tb2)
+    print("Successfully created table prediction")
     
-    # Fetch input data from postgreSQL
-    cur.execute(''' SELECT * FROM  input_data WHERE label = 2''')
-    records = cur.fetchall()
-    print("Retrieve images from postgreSQL")
-    
-    retrieved_image = np.array([[[0] * 28] * 28]*len(records))
-    retrieved_id = np.array([0]*len(records))
-    for i in range(len(records)):
-        retrieved_image[0] = pickle.loads(records[i][2])
-        retrieved_id[i] = records[i][0]
-    
-    # Load trained model
-    model_nn = trained_model = keras.models.load_model("/model/model_nn.h5")
-    print("Load the model")
-    
-    # Process input data
-    x_pred = data_process.scale(retrieved_image)
-    # print(x_pred[0])
-    
-    # Make prediction
-    y_pred = trained_model.predict(x_pred)
-    print("Successfully made prediction")
-    
-    # Store prediction results into table predictions
-    insert_script2 = 'INSERT INTO predictions(pred_id, prediction) VALUES (%s, %s)'
-    
-    for i in range(len(y_pred)):
-        pickle_string_y2 = pickle.dumps(y_pred[i,:10])         
-        insert_values2 = (retrieved_id[i].tolist(), pickle_string_y2)
-        cur.execute(insert_script2, insert_values2)
-    print(f"Successfully inserted {len(y_pred)} predictions into table predictions")
-
-
 except Exception as error:
     print(error)
     
@@ -152,11 +112,83 @@ finally:
         conn.close()
 
 
-
+# Insert values of input data
+def insert_input(input_data):
+    try:
+        # Establishing the connection 
+        conn = connect(
+            host = hostname,
+            user = username,
+            password = pwd, 
+            port = port_id,
+            dbname = dbname)
+        
+        # Set autocommit
+        auto_commit = extensions.ISOLATION_LEVEL_AUTOCOMMIT
+        conn.set_isolation_level(auto_commit)
+        
+        # Creating a cursor object to perform database operations
+        cur = conn.cursor()
+    
+        # Check whether we are able to perform database operations
+        print("Cursor found",cur)
+        
+        # Transform ndarray to binary data and insert data to table input_data
+        insert_script1 = 'INSERT INTO input_data(image) VALUES (%s) ON CONFLICT (id) DO NOTHING'
+        
+        pickle_string_x = pickle.dumps(input_data)  
+        # label = sample_y[i].tolist()
+        insert_values1 = (pickle_string_x,)
+        cur.execute(insert_script1, insert_values1)
+        print("Successfully inserted image data into table input_data")   
+    
+    except Exception as error:
+        print(error)
+        
+    finally:
+        # Close cursor and connection
+        if cur is not None:
+            cur.close()
+        if conn is not None:
+            conn.close()
  
     
-
+# Insert values of prediction
+def insert_prediction(prediction):
+    try:
+        # Establishing the connection 
+        conn = connect(
+            host = hostname,
+            user = username,
+            password = pwd, 
+            port = port_id,
+            dbname = dbname)
+        
+        # Set autocommit
+        auto_commit = extensions.ISOLATION_LEVEL_AUTOCOMMIT
+        conn.set_isolation_level(auto_commit)
+        
+        # Creating a cursor object to perform database operations
+        cur = conn.cursor()
     
+        # Check whether we are able to perform database operations
+        print("Cursor found",cur) 
 
-
+        # Store prediction results into table predictions
+        insert_script2 = 'INSERT INTO predictions(prediction) VALUES (%s)'
+        prediction = prediction.tolist()
+        insert_values2 = (prediction,)
+        cur.execute(insert_script2, insert_values2)
+        print("Successfully inserted prediction into table predictions")
+    
+    
+    except Exception as error:
+        print(error)
+        
+    finally:
+        # Close cursor and connection
+        if cur is not None:
+            cur.close()
+        if conn is not None:
+            conn.close()
 
