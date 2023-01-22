@@ -34,9 +34,9 @@ print("x_test shape:", x_test.shape)
 print(x_test.shape[0], "samples") 
 
 
-# """
-# ## Run experiments
-# """
+"""
+## Run experiments
+"""
 def run_experiment():
     '''
     Run experiments with different hyperparameters
