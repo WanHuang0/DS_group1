@@ -1,10 +1,9 @@
+"""
+## Setup
+"""
 from psycopg2 import connect, extensions
-from tensorflow import keras
 import pickle
-import numpy as np
-import data_process 
 
-# Setup
 hostname = 'db'
 port_id = '5432' 
 username = 'postgres'
@@ -13,15 +12,14 @@ dbname = 'mnist'
 conn = None
 cur = None
 
-# Load data
-(x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()
-# Take a sample
-sample_x = x_train[0, :28, :28]
-sample_y = y_train[0]
 
-# Create database
+"""
+## Create database
+"""
 def CreateDB(dbname):
     try:
+        global conn
+        global cur
         # Establishing the connection 
         conn = connect(
             host = hostname,
@@ -40,7 +38,6 @@ def CreateDB(dbname):
         print("Cursor found",cur)
         
         # Create a new database if it does not exist
-        # query = '''SELECT * FROM pg_catalog.pg_database WHERE datname="mnist"'''
         cur.execute(f"SELECT * FROM pg_catalog.pg_database WHERE datname='{dbname}'")
         exists = cur.fetchall()
         if exists:      
@@ -64,6 +61,10 @@ def CreateDB(dbname):
 # Create database 
 CreateDB(dbname)
 
+
+"""
+## Create tables
+"""
 # Create tables
 try:
     # Establishing the connection 
@@ -112,9 +113,19 @@ finally:
         conn.close()
 
 
-# Insert values of input data
+"""
+## Insert values into table
+"""
 def insert_input(input_data):
+    '''
+    Insert image into table input_data
+    
+    input_data: numpy ndarray
+    
+    '''  
     try:
+        global conn
+        global cur
         # Establishing the connection 
         conn = connect(
             host = hostname,
@@ -137,7 +148,6 @@ def insert_input(input_data):
         insert_script1 = 'INSERT INTO input_data(image) VALUES (%s) ON CONFLICT (id) DO NOTHING'
         
         pickle_string_x = pickle.dumps(input_data)  
-        # label = sample_y[i].tolist()
         insert_values1 = (pickle_string_x,)
         cur.execute(insert_script1, insert_values1)
         print("Successfully inserted image data into table input_data")   
@@ -152,10 +162,15 @@ def insert_input(input_data):
         if conn is not None:
             conn.close()
  
-    
-# Insert values of prediction
 def insert_prediction(prediction):
+    '''
+    Insert prediction into table predictions
+    
+    prediction: int
+    '''  
     try:
+        global conn
+        global cur
         # Establishing the connection 
         conn = connect(
             host = hostname,
@@ -180,7 +195,6 @@ def insert_prediction(prediction):
         insert_values2 = (prediction,)
         cur.execute(insert_script2, insert_values2)
         print("Successfully inserted prediction into table predictions")
-    
     
     except Exception as error:
         print(error)
