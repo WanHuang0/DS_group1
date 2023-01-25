@@ -16,7 +16,7 @@ docker-compose up -d
 ```
 then we input
 ```
-docker run -it --network=src_app-tier -p 5000:5000 --env-file=.env src_app bash
+docker run -it --network=src_app-tier -p 5000:5000 --env-file=.env -v "$(pwd)"/model:/model src_app bash
 ```
 which is followed by command
 ```
@@ -42,3 +42,4 @@ We can inspect it with pgadmin (http://127.0.0.1:5050/)
 |Pillow|9.3.0|0b07fffc13f474264c336298d1b4ce01d9c5a011415b79d4ee5527bb69ae6f65|
 |wandb|0.13.7|b88fe5e75b01f537838dee3fe43c00e15d9d6dd08671503374858fb2e539fcd4|
 |flask|2.2.2|642c450d19c4ad482f96729bd2a8f6d32554aa1e231f4f6b4e7e5264b16cca2b|
+|requests|2.28.2|64299f4909223da747622c030b781c0d7811e359c37124b4bd368fb8c6518baa|
