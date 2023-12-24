@@ -1,0 +1,1 @@
+Dockerized API Project, contains an optimized Neural Network Classification Model built with Keras. Performance of the model is analysed with WandB and Jupyter NBs. The project is further extended with a Web API and User Interface created with Flask, JS and Jinja for a seamless experience.
